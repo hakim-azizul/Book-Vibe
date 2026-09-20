@@ -1,7 +1,8 @@
 import { IBook } from "@/types/bookType";
 import Image from "next/image";
 import Link from "next/link";
-
+import ReadBurtton from "./ReadBurtton";
+import WishlistButton from "./WishlistButton";
 
 interface BookDetailsProps {
   book: IBook;
@@ -139,13 +140,8 @@ const BookDetails = ({ book }: BookDetailsProps) => {
 
               {/* Actions */}
               <div className="flex flex-wrap gap-3">
-                <button className="rounded-xl bg-emerald-600 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-100 transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-xl">
-                  Read
-                </button>
-
-                <button className="rounded-xl border border-slate-300 bg-white px-7 py-3 text-sm font-semibold text-slate-700 transition-all duration-300 hover:border-emerald-500 hover:text-emerald-600">
-                  ♡ Add to Wishlist
-                </button>
+                <ReadBurtton book={book}/>
+                <WishlistButton book={book}/>
               </div>
             </div>
           </div>

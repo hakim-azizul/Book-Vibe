@@ -1,5 +1,5 @@
-import Banner from '@/Components/homeoage/Banner';
-import Books from '@/Components/homeoage/Books';
+import Banner from '@/Components/homepage/Banner';
+import Books from '@/Components/homepage/Books';
 import React from 'react';
 
 const page = () => {
