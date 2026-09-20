@@ -35,6 +35,9 @@ const Navbar = () => {
                 <Link href='/books'>Our Collection</Link>
               </li>
               <li>
+                <Link href='/listed-book'>Listed</Link>
+              </li>
+              <li>
                 <a>Parent</a>
                 <ul className="p-2">
                   <li>
@@ -61,6 +64,9 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">
             <li>
               <Link href='/books'>Our Collection</Link>
+            </li>
+            <li>
+                <Link href='/listed-book'>Listed</Link>
             </li>
             <li>
               <details>

@@ -3,7 +3,6 @@ import { BooksContext } from '@/context/BooksContext';
 import { IBook } from '@/types/bookType';
 import React, { useContext } from 'react';
 
-
 interface IWishlistButton{
     book: IBook 
 }
@@ -12,6 +11,7 @@ const WishlistButton = ({book}: IWishlistButton) => {
 
     const handleWishlist = () => {
         setWishlist([...wishlist, book])
+        alert(`You added ${book.bookName} to wishlist`)
     }
     return (
         <div>
