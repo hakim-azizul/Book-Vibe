@@ -1,13 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import { IBook } from "@/types/bookType";
+import Link from "next/link";
 
 interface BookCardProps{
     book: IBook
 }
 
 const BookCard = ({ book }: BookCardProps) => {
-  const { bookName, author, image, rating, category } = book;
+  const { bookName, author, image, rating, category, bookId } = book;
 
   return (
     <div className="group w-full max-w-sm overflow-hidden rounded-3xl border border-slate-200 bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl">
@@ -20,6 +21,7 @@ const BookCard = ({ book }: BookCardProps) => {
         >
           ♡
         </button>
+        <Link href={`/books/${bookId}`}>
         <Image
           src={image}
           alt={bookName}
@@ -27,6 +29,7 @@ const BookCard = ({ book }: BookCardProps) => {
           height={240}
           className="h-56 w-auto object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-1"
         />
+        </Link>
         {/* Rating badge */}
         <div className="absolute bottom-4 left-4 flex items-center gap-1 rounded-full bg-white/95 px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur">
           <span className="text-amber-400">★</span>

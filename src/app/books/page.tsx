@@ -1,5 +1,5 @@
 import React from "react";
-import BookCard from "../shared/BookCard";
+import BookCard from "@/Components/shared/BookCard";
 import { IBook } from "@/types/bookType";
 
 const getBooks = async () => {
@@ -13,9 +13,9 @@ const Books = async () => {
   return (
     <div className="container mx-auto py-14">
       <div className="flex flex-col items-center">
-        <h1 className="font-bold text-5xl py-6">Popular Books</h1>
-        <div className="grid grid-cols-3 gap-4">
-          {books.slice(0,6).map((book: IBook) => (
+        <h1 className="font-bold text-5xl py-6">Explore Our Collection</h1>
+        <div className="grid grid-cols-4 gap-4">
+          {books.map((book: IBook) => (
             <BookCard key={book.bookId} book={book} />
           ))}
         </div>
