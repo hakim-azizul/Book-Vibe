@@ -3,50 +3,44 @@ import Image from "next/image";
 import { IBook } from "@/types/bookType";
 import Link from "next/link";
 
-interface BookCardProps{
-    book: IBook
+interface BookCardProps {
+  book: IBook;
 }
 
 const BookCard = ({ book }: BookCardProps) => {
-  const { bookName, author, image, rating, category, bookId } = book;
+  const { bookName, author, image, rating, category, bookId, yearOfPublishing, totalPages } = book;
 
   return (
-    <div className="group w-full max-w-sm overflow-hidden rounded-3xl border border-slate-200 bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl">
+    <div className="group w-full max-w-sm overflow-hidden rounded-3xl border border-slate-200 bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-200 hover:shadow-xl">
       {/* Image Section */}
-      <div className="relative flex h-72 items-center justify-center overflow-hidden rounded-2xl bg-linear-to-br from-slate-100 via-slate-50 to-slate-200">
-        {/* Wishlist */}
-        <button
-          className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-xl text-slate-500 shadow-sm backdrop-blur transition-all duration-300 hover:scale-110 hover:bg-white hover:text-red-500"
-          aria-label="Add to wishlist"
-        >
-          ♡
-        </button>
-        <Link href={`/books/${bookId}`}>
-        <Image
-          src={image}
-          alt={bookName}
-          width={190}
-          height={240}
-          className="h-56 w-auto object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-1"
-        />
-        </Link>
-        {/* Rating badge */}
-        <div className="absolute bottom-4 left-4 flex items-center gap-1 rounded-full bg-white/95 px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur">
-          <span className="text-amber-400">★</span>
-          {rating}
+      <Link href={`/books/${bookId}`}>
+        <div className="relative flex h-72 items-center justify-center overflow-hidden rounded-2xl bg-linear-to-br from-slate-100 via-white to-emerald-50">
+          {/* Decorative Glow */}
+          <div className="absolute h-40 w-40 rounded-full bg-emerald-200/30 blur-3xl transition-all duration-500 group-hover:scale-150" />
+
+          {/* Book Image */}
+          <Image
+            src={image}
+            alt={bookName}
+            width={190}
+            height={240}
+            className="relative z-10 h-56 w-auto object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-1"
+          />
+
+          {/* Rating Badge */}
+          <div className="absolute bottom-4 left-4 z-20 flex items-center gap-1.5 rounded-full border border-slate-100 bg-white/95 px-3.5 py-1.5 text-sm font-semibold text-slate-700 shadow-md backdrop-blur">
+            <span className="text-amber-400">★</span>
+            {rating}
+          </div>
         </div>
-      </div>
+      </Link>
 
       {/* Content */}
       <div className="px-2 pb-2 pt-5">
-        {/* Category */}
-        <div className="flex items-center gap-2">
-          <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-600">
+        {/* Type */}
+        <div>
+          <span className="inline-flex rounded-full bg-emerald-50 px-3.5 py-1.5 text-xs font-semibold text-emerald-600 transition-colors group-hover:bg-emerald-100">
             {category}
-          </span>
-
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-500">
-            Identity
           </span>
         </div>
 
@@ -64,28 +58,26 @@ const BookCard = ({ book }: BookCardProps) => {
         {/* Divider */}
         <div className="my-5 border-t border-dashed border-slate-200" />
 
-        {/* Bottom */}
+        {/* Bottom Information */}
         <div className="flex items-center justify-between">
-          {/* Category */}
+          {/* Published Year */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-slate-400">
-              Genre
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">
+              Published
             </p>
 
-            <p className="mt-1 font-medium text-slate-700">{category}</p>
+            <p className="mt-1.5 font-semibold text-slate-700">
+              {yearOfPublishing}
+            </p>
           </div>
 
-          {/* Rating */}
+          {/* Total Pages */}
           <div className="text-right">
-            <p className="text-xs font-medium uppercase tracking-wider text-slate-400">
-              Rating
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">
+              Total Pages
             </p>
 
-            <div className="mt-1 flex items-center gap-1">
-              <span className="text-amber-400">★</span>
-
-              <span className="font-bold text-slate-800">{rating}</span>
-            </div>
+            <p className="mt-1.5 font-semibold text-slate-700">{totalPages}</p>
           </div>
         </div>
       </div>

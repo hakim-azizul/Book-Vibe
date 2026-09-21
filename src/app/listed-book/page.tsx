@@ -2,21 +2,51 @@
 import ListedBookCard from "@/Components/listed-book/ListedBookCard";
 import { BooksContext } from "@/context/BooksContext";
 import { IBook } from "@/types/bookType";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 const ListedBooks = () => {
   const { readBooks, wishlist } = useContext(BooksContext);
-  console.log(readBooks, wishlist, "wish Read");
+
+  const [sortBy, setSortBy] = useState<"rating" | "pages" | "year">("rating");
+
+  const sortBooks = (books: IBook[]) => {
+    const sortedBooks = [...books];
+    if (sortBy === "rating") {
+      sortedBooks.sort((a, b) => b.rating - a.rating);
+    } else if (sortBy === "pages") {
+      sortedBooks.sort((a, b) => b.totalPages - a.totalPages);
+    } else if (sortBy === "year") {
+      sortedBooks.sort((a, b) => b.yearOfPublishing - a.yearOfPublishing);
+    }
+    return sortedBooks;
+  };
+  const sortedReadBooks = sortBooks(readBooks);
+  const sortedWishlist = sortBooks(wishlist);
+
   return (
     <div className="container mx-auto">
       <h2 className="my-4 bg-cyan-200 rounded-3xl px-16 py-6 font-bold text-4xl text-center">
         Listed Collection
       </h2>
+      <div className="text-center">
+        <select
+          value={sortBy}
+          onChange={(e) =>
+            setSortBy(e.target.value as "rating" | "pages" | "year")
+          }
+          className="select select-success mb-5"
+        >
+          <option disabled={true}>Sort By</option>
+          <option value={"rating"}>Rating</option>
+          <option value={"pages"}>Number of pages</option>
+          <option value={"year"}>Year of Publish</option>
+        </select>
+      </div>
 
       {/* name of each tab group should be unique */}
       <div className="tabs tabs-lift">
         <label className="tab">
-          <input type="radio" name="my_tabs_4" />
+          <input type="radio" name="my_tabs_4" defaultChecked/>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -34,10 +64,16 @@ const ListedBooks = () => {
           {`Read Books (${readBooks.length})`}
         </label>
         <div className="tab-content bg-base-100 border-base-300 p-6">
-          {
-            readBooks.length > 0? (readBooks.map((book: IBook) => <ListedBookCard key={book.bookId} book={book} />)) :
-            (<p className="text-center text-lg font-semibold"> No Read Books found</p>)
-          }
+          {sortedReadBooks.length > 0 ? (
+            sortedReadBooks.map((book: IBook) => (
+              <ListedBookCard key={book.bookId} book={book} />
+            ))
+          ) : (
+            <p className="text-center text-lg font-semibold">
+              {" "}
+              No Read Books found
+            </p>
+          )}
         </div>
         <label className="tab">
           <input type="radio" name="my_tabs_4" />
@@ -58,10 +94,16 @@ const ListedBooks = () => {
           {`Wishlist Books (${wishlist.length})`}
         </label>
         <div className="tab-content bg-base-100 border-base-300 p-6">
-          {
-            wishlist.length > 0? (wishlist.map((book: IBook) => <ListedBookCard key={book.bookId} book={book} />)) :
-            (<p className="text-center text-lg font-semibold"> Wishlisted Books Not found</p>)
-          }
+          {sortedWishlist.length > 0 ? (
+            sortedWishlist.map((book: IBook) => (
+              <ListedBookCard key={book.bookId} book={book} />
+            ))
+          ) : (
+            <p className="text-center text-lg font-semibold">
+              {" "}
+              Wishlisted Books Not found
+            </p>
+          )}
         </div>
       </div>
     </div>
