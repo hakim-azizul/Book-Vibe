@@ -7,15 +7,16 @@ import {
   Star,
   UserRound,
   UsersRound,
-  Trash2,
 } from "lucide-react";
 import Link from "next/link";
+import ListRemoveButton from "./ListRemoveButton";
 
 interface ListedBookCardProps {
   book: IBook;
+  listType: "read" | "wishlist";
 }
 
-const ListedBookCard = ({ book }: ListedBookCardProps) => {
+const ListedBookCard = ({ book, listType }: ListedBookCardProps) => {
   return (
     <div className="group w-full overflow-hidden rounded-2xl border border-slate-200 bg-white my-3 p-3 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-lg">
       <div className="flex gap-4">
@@ -109,13 +110,7 @@ const ListedBookCard = ({ book }: ListedBookCardProps) => {
             </Link>
 
             {/* Remove */}
-            <button
-              onClick={() => handleRemove(book.bookId)}
-              className="flex items-center gap-1 rounded-full bg-red-50 px-3 py-1.5 text-[10px] font-semibold text-red-500 transition-all duration-300 hover:bg-red-500 hover:text-white hover:shadow-md"
-            >
-              <Trash2 size={11} />
-              Remove
-            </button>
+            <ListRemoveButton bookId={book.bookId} listType={listType} />
           </div>
         </div>
       </div>

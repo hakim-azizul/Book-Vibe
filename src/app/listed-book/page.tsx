@@ -66,7 +66,7 @@ const ListedBooks = () => {
         <div className="tab-content bg-base-100 border-base-300 p-6">
           {sortedReadBooks.length > 0 ? (
             sortedReadBooks.map((book: IBook) => (
-              <ListedBookCard key={book.bookId} book={book} />
+              <ListedBookCard key={book.bookId} book={book} listType="read" />
             ))
           ) : (
             <p className="text-center text-lg font-semibold">
@@ -96,7 +96,7 @@ const ListedBooks = () => {
         <div className="tab-content bg-base-100 border-base-300 p-6">
           {sortedWishlist.length > 0 ? (
             sortedWishlist.map((book: IBook) => (
-              <ListedBookCard key={book.bookId} book={book} />
+              <ListedBookCard key={book.bookId} book={book} listType="wishlist"/>
             ))
           ) : (
             <p className="text-center text-lg font-semibold">

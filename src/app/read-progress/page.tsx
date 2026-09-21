@@ -57,7 +57,7 @@ const CustomColorLabel = (props: LabelProps) => {
 
 const ReadProgress = () => {
   const { readBooks } = useContext(BooksContext);
-  const data = readBooks.map((book: IBook, index) => {
+  const data = readBooks.map((book: IBook, index: number) => {
     return {
       name: book.bookName,
       page: book.totalPages,

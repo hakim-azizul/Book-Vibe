@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import bannerImg from "@/assets/hero_img.jpg";
+import Link from "next/link";
 
 const Banner = () => {
   return (
@@ -25,19 +26,19 @@ const Banner = () => {
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <a
-                href="#books"
+              <Link
+                href="./listed-book"
                 className="rounded-xl bg-emerald-600 px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-200 transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-700 hover:shadow-xl"
               >
                 View The List
-              </a>
+              </Link>
 
-              <a
-                href="#featured"
+              <Link
+                href="./books"
                 className="rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 transition-all duration-300 hover:border-emerald-500 hover:text-emerald-600"
               >
                 Explore Books
-              </a>
+              </Link>
             </div>
           </div>
 
