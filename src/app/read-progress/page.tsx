@@ -60,7 +60,7 @@ const ReadProgress = () => {
   const data = readBooks.map((book: IBook, index) => {
     return {
       name: book.bookName,
-      uv: book.totalPages,
+      page: book.totalPages,
       pv: index + 1,
       amt: index + 1,
     };
@@ -89,7 +89,7 @@ const ReadProgress = () => {
           <Tooltip cursor={{ fillOpacity: 0.5 }} />
           <XAxis dataKey="name" />
           <YAxis width="auto" />
-          <Bar dataKey="uv" shape={TriangleBar} activeBar>
+          <Bar dataKey="page" shape={TriangleBar} activeBar>
             <LabelList content={CustomColorLabel} position="top" />
           </Bar>
           {/* <RechartsDevtools /> */}
