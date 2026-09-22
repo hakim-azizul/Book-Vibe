@@ -3,13 +3,20 @@ import BookCard from "@/Components/shared/BookCard";
 import { IBook } from "@/types/bookType";
 
 const getBooks = async () => {
-  const res = await fetch("http://localhost:3000/booksData.json");
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`,
+    );
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("An error oquired to fetching data", error);
+    return [];
+  }
 };
 
 const Books = async () => {
-  const books : IBook[] = await getBooks();
+  const books: IBook[] = await getBooks();
   return (
     <div className="container mx-auto py-14">
       <div className="flex flex-col items-center">
