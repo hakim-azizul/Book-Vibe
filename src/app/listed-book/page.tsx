@@ -42,8 +42,6 @@ const ListedBooks = () => {
           <option value={"year"}>Year of Publish</option>
         </select>
       </div>
-
-      {/* name of each tab group should be unique */}
       <div className="tabs tabs-lift">
         <label className="tab">
           <input type="radio" name="my_tabs_4" defaultChecked/>
